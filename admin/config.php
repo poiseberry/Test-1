@@ -40,14 +40,11 @@ $site_error_url = "http://" . $_SERVER['HTTP_HOST'] . $fe_path . "404.php";
 $site_http_url = "http://" . $_SERVER['HTTP_HOST'] . $fe_path;
 
 $site_admin_email = 'vincentlee@decubic.com';
-//$site_admin_email = 'rookie@decubic.com';
 
 //include extra file
 require_once('include/database/class.database.php');
 require_once('include/PHPMailer-master/PHPMailerAutoload.php');
-require_once('include/qrcode.php');
 require_once('include/function.php');
-require_once('include/language/en.php');
 
 //function
 function is_login()
@@ -59,43 +56,9 @@ function is_login()
     }
 }
 
-function detect_language()
-{
-    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    switch ($lang) {
-        case "zh":
-            setcookie('language', 'zh', time() + 36000, '/', '.ecogreenholding.com');
-            $_COOKIE['language'] = 'zh';
-            require_once("include/language/zh.php");
-            break;
-        case "en":
-            setcookie('language', 'en', time() + 36000, '/', '.ecogreenholding.com');
-            $_COOKIE['language'] = 'en';
-            require_once("include/language/en.php");
-            break;
-        default:
-            setcookie('language', 'en', time() + 36000, '/', '.ecogreenholding.com');
-            $_COOKIE['language'] = 'en';
-            require_once("include/language/en.php");
-            break;
-    }
-}
-
 if (preg_match("/admin/", $_SERVER['PHP_SELF'])) {
     if (!preg_match("/login/", $_SERVER['PHP_SELF']) && !preg_match("/logout/", $_SERVER['PHP_SELF']) && !preg_match("/index/", $_SERVER['PHP_SELF'])) {
         is_login();
-    }
-}
-
-if ($_GET['lang'] != "") {
-    setcookie('language', $_GET['lang'], time() + 36000, '/', '.ecogreenholding.com');
-    $_COOKIE['language'] = $_GET['lang'];
-    require_once("include/language/" . $_GET['lang'] . ".php");
-} else {
-    if ($_COOKIE['language'] == "") {
-        detect_language();
-    } else {
-        require_once("include/language/" . $_COOKIE['language'] . ".php");
     }
 }
 
