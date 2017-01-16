@@ -5,7 +5,7 @@ $database = new database();
 
 $today=date('Y-m-d');
 
-$query = "select * from " .$table['contact']. " where created_date like '%$today%'";
+$query = "select * from " .$table['enquiry']. " where created_date like '%$today%'";
 $result = $database->query($query);
 $array = $result->numRows();
 ?>

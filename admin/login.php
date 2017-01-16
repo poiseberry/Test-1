@@ -42,7 +42,7 @@ if ($_POST) {
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <center><img src="../img/logo.png" width="300px" alt="ECOGREEN"></center>
+        <center><img src="../img/logo.png" width="300px"></center>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
